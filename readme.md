@@ -3,3 +3,5 @@
 2.use this documentation for converter https://pypi.org/project/unoconv/
 
 3.subprocess
+
+python main.py
