@@ -5,3 +5,7 @@
 3.subprocess
 
 python main.py
+
+python version = 3.8.7
+ubuntu = 18.04
+unoconv = 0.9.0
