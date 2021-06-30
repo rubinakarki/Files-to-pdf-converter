@@ -11,18 +11,18 @@ with open(f"/home/rubina/uno-test/{filename}.{file_exten}", 'wb') as f:
     f.write(r.content)
 
 # for conversion
-convert_command  = f"unoconv -f pdf {filename}.{file_exten}"
+convert_command  = f"unoconv -f pdf --output={filename}3.pdf {filename}.{file_exten}"
 subprocess.call(convert_command,shell=True)
 
-upload_to_s3_command = f"aws s3 cp {filename}.pdf s3://fuse-ai-resources-dev/onsiteinstructorassignments/{foldername}"
+upload_to_s3_command = f"aws s3 cp {filename}3.pdf s3://fuse-ai-resources-dev/onsiteinstructorassignments/{foldername}/converted/"
 subprocess.call(upload_to_s3_command,shell=True)
 
 # boto3
 
 # remove file locally
-remove_command = f"rm {filename}.{file_exten} && rm {filename}.pdf"
+remove_command = f"rm {filename}.{file_exten} && rm {filename}3.pdf"
 subprocess.call(remove_command,shell=True)
 
-output_url = f"https://s3-us-west-2.amazonaws.com/fuse-ai-resources-dev/onsiteinstructorassignments/{foldername}/converted/{filename}.pdf"
+output_url = f"https://s3-us-west-2.amazonaws.com/fuse-ai-resources-dev/onsiteinstructorassignments/{foldername}/converted/{filename}3.pdf"
 print(output_url)
 
